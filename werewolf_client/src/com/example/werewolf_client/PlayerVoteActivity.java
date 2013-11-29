@@ -24,6 +24,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.os.Build;
 import android.widget.AdapterView.OnItemClickListener;
 public class PlayerVoteActivity extends ListActivity {
@@ -36,6 +37,7 @@ public class PlayerVoteActivity extends ListActivity {
 	protected static final String TAG = "debug";
 	private String username;
 	private String password;
+	private String voteeID;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -85,9 +87,32 @@ public class PlayerVoteActivity extends ListActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				Toast.makeText(getApplicationContext(),
-						"Click ListItem Number " + position, Toast.LENGTH_LONG)
-						.show();
+			
+				voteeID = list.get(position);
+				MafiaRestClient.setBasicAuth(username, password);
+				MafiaRestClient.post("voteForPlayer/" + username + "/" + voteeID, 
+						null, new AsyncHttpResponseHandler() {
+					@Override
+					public void onSuccess(String response) {
+						Context context = getApplicationContext();
+						
+						CharSequence text = "You voted for " + voteeID;
+						int duration = Toast.LENGTH_SHORT;
+						Toast toast = Toast.makeText(context, text, duration);
+						toast.show();
+						voteeID = "";
+
+					}
+					
+					@Override
+					public void onFailure(Throwable e) {
+					    Log.e(TAG, "OnFailure!", e);
+					}
+					@Override
+					public void onFailure(Throwable e, String response) {
+					    Log.e(TAG, "OnFailure!", e);
+					}
+				});
 			}
 		}); 
 	}

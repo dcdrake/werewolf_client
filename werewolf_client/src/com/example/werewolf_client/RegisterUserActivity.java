@@ -69,6 +69,14 @@ public class RegisterUserActivity extends Activity {
 
 		final String username = usernameText.getText().toString();
 		String password = passwordText.getText().toString();
+		String willBeWerewolf;
+		
+		double d = Math.random();
+		if (d < 0.3){
+		    willBeWerewolf = "True";
+		}else{
+			willBeWerewolf = "False";
+		}
 
 		// Register a new user in the system
 		MafiaRestClient.post("registerNewUser/" + username + "/" + password, 
@@ -78,7 +86,6 @@ public class RegisterUserActivity extends Activity {
 				Context context = getApplicationContext();
 				CharSequence text = "User " + username + " registered successfully.";
 				int duration = Toast.LENGTH_SHORT;
-
 				Toast toast = Toast.makeText(context, text, duration);
 				toast.show();
 			}
@@ -86,7 +93,7 @@ public class RegisterUserActivity extends Activity {
 		
 		// Set BasicAuth credentials and create a new player
 		MafiaRestClient.setBasicAuth(username, password);
-		MafiaRestClient.post("addPlayer/" + username + "/20/40/True", 
+		MafiaRestClient.post("addPlayer/" + username + "/20/40/" + willBeWerewolf, 
 				null, new AsyncHttpResponseHandler() {
 			@Override
 			public void onSuccess(String response) {
