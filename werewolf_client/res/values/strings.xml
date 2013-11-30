@@ -17,5 +17,6 @@
     <string name="start_game">Start Game</string>
     <string name="title_activity_vote">VoteActivity</string>
     <string name="title_activity_player_vote">PlayerVoteActivity</string>
+    <string name="title_activity_game_status">GameStatusActivity</string>
 
 </resources>

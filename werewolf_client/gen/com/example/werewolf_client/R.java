@@ -53,21 +53,23 @@ public final class R {
         public static final int verifypassword=0x7f08000b;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
-        public static final int activity_player_vote=0x7f030001;
-        public static final int activity_register_user=0x7f030002;
-        public static final int activity_start_game=0x7f030003;
-        public static final int activity_user_login=0x7f030004;
-        public static final int list_item=0x7f030005;
+        public static final int activity_game_status=0x7f030000;
+        public static final int activity_main=0x7f030001;
+        public static final int activity_player_vote=0x7f030002;
+        public static final int activity_register_user=0x7f030003;
+        public static final int activity_start_game=0x7f030004;
+        public static final int activity_user_login=0x7f030005;
+        public static final int list_item=0x7f030006;
     }
     public static final class menu {
-        public static final int login=0x7f070000;
-        public static final int main=0x7f070001;
-        public static final int player_vote=0x7f070002;
-        public static final int register_user=0x7f070003;
-        public static final int start_game=0x7f070004;
-        public static final int user_login=0x7f070005;
-        public static final int vote=0x7f070006;
+        public static final int game_status=0x7f070000;
+        public static final int login=0x7f070001;
+        public static final int main=0x7f070002;
+        public static final int player_vote=0x7f070003;
+        public static final int register_user=0x7f070004;
+        public static final int start_game=0x7f070005;
+        public static final int user_login=0x7f070006;
+        public static final int vote=0x7f070007;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
@@ -79,6 +81,7 @@ public final class R {
         public static final int password=0x7f050004;
         public static final int register=0x7f050008;
         public static final int start_game=0x7f05000d;
+        public static final int title_activity_game_status=0x7f050010;
         public static final int title_activity_player_vote=0x7f05000f;
         public static final int title_activity_register_user=0x7f05000c;
         public static final int title_activity_start_game=0x7f050009;

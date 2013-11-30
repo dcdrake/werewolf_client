@@ -70,6 +70,8 @@ public class MainActivity extends Activity {
 
 			}
 		});
+		
+		
 		Intent intent = new Intent(this, StartGame.class);
 		intent.putExtra("username", username);
 		intent.putExtra("password", password);
