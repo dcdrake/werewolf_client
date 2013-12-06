@@ -22,35 +22,43 @@ public final class R {
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
-        public static final int werewolf=0x7f020001;
+        public static final int notification=0x7f020001;
+        public static final int sun=0x7f020002;
+        public static final int werewolf=0x7f020003;
+        public static final int werewolf_moon=0x7f020004;
     }
     public static final class id {
-        public static final int action_settings=0x7f080019;
-        public static final int button1=0x7f080007;
-        public static final int createButton=0x7f080009;
-        public static final int editText1=0x7f080014;
-        public static final int editText2=0x7f080015;
-        public static final int editText3=0x7f080016;
-        public static final int firstname=0x7f08000e;
-        public static final int label=0x7f080018;
-        public static final int lastname=0x7f080011;
-        public static final int password=0x7f080005;
-        public static final int startButton=0x7f080017;
-        public static final int tableRow1=0x7f080000;
-        public static final int tableRow2=0x7f080003;
-        public static final int tableRow3=0x7f080006;
-        public static final int tableRow4=0x7f08000c;
-        public static final int tableRow5=0x7f08000f;
-        public static final int tableRow6=0x7f080008;
-        public static final int tableRow7=0x7f080012;
-        public static final int textTest=0x7f080013;
+        public static final int action_settings=0x7f08001e;
+        public static final int button1=0x7f080003;
+        public static final int createButton=0x7f08000b;
+        public static final int editText1=0x7f080019;
+        public static final int editText2=0x7f08001a;
+        public static final int editText3=0x7f08001b;
+        public static final int firstname=0x7f080013;
+        public static final int footerlayout=0x7f08000d;
+        public static final int imageView1=0x7f080000;
+        public static final int join=0x7f08000e;
+        public static final int label=0x7f08001d;
+        public static final int lastname=0x7f080016;
+        public static final int listviewlayout=0x7f08000c;
+        public static final int password=0x7f080008;
+        public static final int progressbar_Horizontal=0x7f080002;
+        public static final int startButton=0x7f08001c;
+        public static final int tableRow1=0x7f080004;
+        public static final int tableRow2=0x7f080006;
+        public static final int tableRow3=0x7f080009;
+        public static final int tableRow4=0x7f080011;
+        public static final int tableRow5=0x7f080014;
+        public static final int tableRow6=0x7f08000a;
+        public static final int tableRow7=0x7f080017;
+        public static final int textTest=0x7f080018;
         public static final int textView1=0x7f080001;
-        public static final int textView2=0x7f080004;
-        public static final int textView3=0x7f08000a;
-        public static final int textView4=0x7f08000d;
-        public static final int textView5=0x7f080010;
-        public static final int username=0x7f080002;
-        public static final int verifypassword=0x7f08000b;
+        public static final int textView2=0x7f080007;
+        public static final int textView3=0x7f08000f;
+        public static final int textView4=0x7f080012;
+        public static final int textView5=0x7f080015;
+        public static final int username=0x7f080005;
+        public static final int verifypassword=0x7f080010;
     }
     public static final class layout {
         public static final int activity_game_status=0x7f030000;

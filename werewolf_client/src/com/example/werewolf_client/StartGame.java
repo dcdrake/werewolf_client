@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -16,13 +17,14 @@ import android.widget.Toast;
 
 public class StartGame extends Activity {
 
+	protected static final String TAG = "debug";
 	private EditText hoursText;
 	private EditText minutesText;
 	private EditText killRadiusText;
 	private String username;
 	private String password;
 	int dayNightFreq;
-	int killRadius;
+	float killRadius;
 
 
 	@Override
@@ -56,24 +58,29 @@ public class StartGame extends Activity {
 		killRadius = Integer.parseInt(killRadiusText.getText().toString());
 		dayNightFreq = (hours * 60) + minutes;
 
-		//AsyncHttpClient client = new AsyncHttpClient();
-		MafiaRestClient.post("http://mafia-service.herokuapp.com/startGame/" + username + "/" + dayNightFreq
+		MafiaRestClient.setBasicAuth(username, password);
+		MafiaRestClient.post("startGame/" + username + "/" + dayNightFreq
 				+ "/" + killRadius, null, new AsyncHttpResponseHandler() {
 			@Override
 			public void onSuccess(String response) {
 				Context context = getApplicationContext();
 				CharSequence text = "Game started successfully.";
 				int duration = Toast.LENGTH_SHORT;
-
 				Toast toast = Toast.makeText(context, text, duration);
 				toast.show();
+				
+				Intent intent = new Intent(StartGame.this, PlayerVoteActivity.class);
+				intent.putExtra("username", username);
+				intent.putExtra("password", password);
+				startActivity(intent);
 
 			}
+			@Override
+			public void onFailure(Throwable e, String response) {
+			    Log.e(TAG, response, e);
+			}
 		});
-		Intent intent = new Intent(this, PlayerVoteActivity.class);
-		intent.putExtra("username", username);
-		intent.putExtra("password", password);
-		startActivity(intent);
+
 	}
 
 }

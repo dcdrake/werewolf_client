@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.support.v4.app.NavUtils;
@@ -38,6 +39,7 @@ public class PlayerVoteActivity extends ListActivity {
 	private String username;
 	private String password;
 	private String voteeID;
+	private Button joinButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,7 @@ public class PlayerVoteActivity extends ListActivity {
 
 
 		playerList = getListView();
+		joinButton = (Button) findViewById(R.id.join);
 
 		MafiaRestClient.setBasicAuth(username, password);
 		MafiaRestClient.get("getLivePlayers", null, new JsonHttpResponseHandler() {
@@ -63,7 +66,7 @@ public class PlayerVoteActivity extends ListActivity {
 					JSONArray playersArray = jsonResponse.getJSONArray("livePlayers");
 					playerArrayLength = playersArray.length();
 
-					list= new ArrayList<String>();
+					list = new ArrayList<String>();
 
 					for (int i = 0; i < playerArrayLength; ++i) {
 						JSONObject jObj = playersArray.getJSONObject(i);
@@ -87,30 +90,28 @@ public class PlayerVoteActivity extends ListActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-			
+
 				voteeID = list.get(position);
+
 				MafiaRestClient.setBasicAuth(username, password);
-				MafiaRestClient.post("voteForPlayer/" + username + "/" + voteeID, 
-						null, new AsyncHttpResponseHandler() {
+				MafiaRestClient.post("voteForPlayer/" + username + "/" + voteeID, null, new AsyncHttpResponseHandler() {
 					@Override
 					public void onSuccess(String response) {
 						Context context = getApplicationContext();
-						
-						CharSequence text = "You voted for " + voteeID;
+
+						CharSequence text = "Vote cast";
 						int duration = Toast.LENGTH_SHORT;
 						Toast toast = Toast.makeText(context, text, duration);
 						toast.show();
-						voteeID = "";
-
 					}
-					
+
 					@Override
 					public void onFailure(Throwable e) {
-					    Log.e(TAG, "OnFailure!", e);
+						Log.e(TAG, "OnFailure!", e);
 					}
 					@Override
 					public void onFailure(Throwable e, String response) {
-					    Log.e(TAG, "OnFailure!", e);
+						Log.e(TAG, "OnFailure!", e);
 					}
 				});
 			}
@@ -125,6 +126,16 @@ public class PlayerVoteActivity extends ListActivity {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 			getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
+	}
+
+	public void joinGame(View view){
+		adapter = null;
+		list.add(username);
+		adapter = new ArrayAdapter<String>(PlayerVoteActivity.this,
+				R.layout.list_item, R.id.label, list);
+		playerList.setAdapter(adapter);
+		adapter.notifyDataSetChanged();
+		System.out.println("This worked");
 	}
 
 	@Override
